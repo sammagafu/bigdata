@@ -24,6 +24,4 @@ urlpatterns = [
     path('customer/', include('customer.urls')),
     path('transformer/', include('transformer.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
-]
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
