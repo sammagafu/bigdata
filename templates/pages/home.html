@@ -1,0 +1,119 @@
+
+
+<!DOCTYPE html>
+{% load static %}
+    <html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Bigdata Tanesco</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Premium Bootstrap 4 Landing Page Template" />
+        <meta name="keywords" content="bootstrap 4, premium, marketing, multipurpose" />
+        <meta name="author" content="Shreethemes" />
+        <meta name="Version" content="2.0" />
+        <!-- favicon -->
+        <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+        <!-- Bootstrap -->
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+        <!-- Main Css -->
+        <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" id="theme-opt" />
+        <link href="{% static 'css/colors/default.css' %}" rel="stylesheet" id="color-opt">
+
+    </head>
+
+    <body>
+        <!-- Loader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="spinner">
+                    <div class="double-bounce1"></div>
+                    <div class="double-bounce2"></div>
+                </div>
+            </div>
+        </div>
+        <!-- Loader -->
+
+        <!-- Navbar STart -->
+        <header id="topnav" class="defaultscroll sticky">
+            <div class="container">
+                <!-- Logo container-->
+                <div>
+                    <a class="logo" href="{% url 'pages:homepage' %}">Tanesco Data<span class="text-primary">.</span></a>
+                </div>                 
+                <div class="buy-button">
+                   
+                   {% if is_authenticated %}
+                    <a href="{% url 'logout' %}" target="_blank" class="btn btn-primary">Log Out</a>
+                    {% else %}
+                     <a href="{% url 'login' %}" target="_blank" class="btn btn-primary">Log In</a>
+                   {% endif %}
+                       
+                </div><!--end login button-->
+                <!-- End Logo container-->
+                <div class="menu-extras">
+                    <div class="menu-item">
+                        <!-- Mobile menu toggle-->
+                        <a class="navbar-toggle">
+                            <div class="lines">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </a>
+                        <!-- End mobile menu toggle-->
+                    </div>
+                </div>
+        
+                <div id="navigation">
+                    
+                    {% if is_authenticated %}
+                        <div class="buy-menu-btn d-none">
+                        <a href="{% url 'logout' %}" target="_blank" class="btn btn-primary">Log Out</a>
+                    </div><!--end login button-->
+                    {% else %}
+                    <div class="buy-menu-btn d-none">
+                        <a href="{% url 'login' %}" target="_blank" class="btn btn-primary">Buy Now</a>
+                    </div><!--end login button-->
+                    {% endif %}
+                        
+                </div><!--end navigation-->
+            </div><!--end container-->
+        </header><!--end header-->
+        <!-- Navbar End -->
+        
+        <!-- Hero Start -->
+        <section class="bg-marketing d-table w-100" style="background: url('{% static 'images/marketing/marketing-shape.png' %}')" id="home">
+            <div class="container">
+                <div class="row justify-content-center mt-5">
+                    <div class="col-lg-7 col-md-7 text-center">
+                        <img src="{% static 'images/marketing/2.png' %}" class="img-fluid" style="max-height: 400px" alt="">
+
+                        <div class="title-heading mt-0 mt-md-5 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                            <h1 class="heading mb-3">Tanesco Big Data Handling</h1>
+                            <p class="para-desc text-muted">Big data is a field that treats ways to analyze, systematically extract information from, or otherwise deal with data sets that are too large or complex to be dealt with by traditional data-processing application software`</p>
+                        </div>
+                    </div>
+                </div><!--end row-->
+            </div><!--end container--> 
+        </section><!--end section-->
+        <!-- Hero End -->
+        <footer class="footer footer-bar">
+            <div class="container text-center">
+                <div class="row align-items-center">
+                    <div class="col-sm-6">
+                        <div class="text-sm-left">
+                            <p class="mb-0">&copy; {% now 'Y' %} Luciana Lawi. </p>
+                        </div>
+                    </div><!--end col-->
+                </div><!--end row-->
+            </div><!--end container-->
+        </footer><!--end footer-->
+        <!-- Footer End -->
+
+        <!-- javascript -->
+        <script src="{% static 'js/jquery.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+        <!-- Main Js -->
+        <script src="{% static 'js/app.js' %}"></script>
+    </body>
+</html>
