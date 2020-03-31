@@ -17,6 +17,7 @@
     <!-- Master Stylesheet [If you remove this CSS file, your file will be broken undoubtedly.] -->
     <link rel="stylesheet" href="{% static 'style.css' %}">
     <script src="https://kit.fontawesome.com/1ccda54f74.js" crossorigin="anonymous"></script>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
 
 
 </head>
@@ -44,7 +45,7 @@
                     <nav>
                         <ul class="sidebar-menu" data-widget="tree">
                             <li><a href="{% url 'pages:myprofile' %}"><i class='bx bx-home-heart'></i><span>Home</span></a></li>
-                            <li><a href=""><i class='bx bx-chalkboard'></i><span>Customers</span></a></li>
+                            <li><a href="{% url 'customers:index' %}"><i class='bx bx-chalkboard'></i><span>Customers</span></a></li>
                             <li><a href="#"><i class='bx bxs-cart'></i><span>Transaction</span></a></li>
                             <li><a href="#"><i class='bx bx-money'></i><span>Transformer</span></a></li>
                         </ul>
@@ -110,21 +111,31 @@
             </div>
         </div>
     </div>
+     <script>
+        $(document).ready(function(){
+            {% block jquery %}
 
+            {% endblock jquery %}
+        })
+    </script>
     <!-- ======================================
     ********* Page Wrapper Area End ***********
     ======================================= -->
 
     <!-- Must needed plugins to the run this Template -->
-    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js" integrity="sha256-o8aByMEvaNTcBsw94EfRLbBrJBI+c3mjna/j4LrfyJ8=" crossorigin="anonymous"></script>
     <script src="{% static 'js/popper.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/bundle.js' %}"></script>
     <script src="{% static 'js/default-assets/setting.js' %}"></script>
     <script src="{% static 'js/default-assets/fullscreen.js' %}"></script>
 
-    <!-- Active JS -->
     <script src="{% static 'js/default-assets/active.js' %}"></script>
+    <!-- Active JS -->
+    <!-- <script src="{% static 'js/default-assets/chartist.min.js' %}"></script>
+    <script src="{% static 'js/default-assets/chartist-plugin-toltip.js' %}"></script>
+    <script src="{% static 'js/default-assets/chartis-custom.js' %}"></script> -->
+
 
 </body>
 

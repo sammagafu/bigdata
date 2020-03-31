@@ -22,6 +22,10 @@ class CustomerHouseHold(models.Model):
         """Unicode representation of CustomerHouseld."""
         return self.customerFirstName
 
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse('customers:detail', kwargs={'pk': self.pk})
+
 class Transaction(models.Model):
     """Model definition for Transaction."""
     buyer = models.ForeignKey(CustomerHouseHold, on_delete=models.CASCADE,related_name="buyer")
@@ -35,9 +39,6 @@ class Transaction(models.Model):
         verbose_name = 'Transaction'
         verbose_name_plural = 'Transactions'
 
-    # def __str__(self):
-    #     return self.buyer
-
 class MetreReading(models.Model):
     """Model definition for MetreReading."""
     owner = models.ForeignKey(CustomerHouseHold, on_delete=models.CASCADE,related_name="metre")
@@ -45,10 +46,6 @@ class MetreReading(models.Model):
     voltage = models.IntegerField(verbose_name="metre voltage")
     current = models.IntegerField(verbose_name="metre current")
     consumption = models.IntegerField(verbose_name="metre consumption")
-
-
-
-    # TODO: Define fields here
 
     class Meta:
         """Meta definition for Metre Reading."""

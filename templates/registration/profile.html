@@ -1,12 +1,15 @@
-{% extends 'registration/base.html' %}
+{% extends 'base.html' %}
+
 {% block content %}
 <div class="row justify-content-center">
     <div class="col-sm-6 col-lg-4">
         <div class="card box-margin">
             <div class="card-body">
-                <div class="float-right"><i class="fa fa-id-badge text-danger font-30"></i></div><span class="badge badge-danger">Registered Customers</span>
-                <h4 class="my-3">26k</h4>
-                <p class="mb-0"><span class="text-success"><i class="fa fa-level-up mr-1" aria-hidden="true"></i>7.5%</span>New Sessions Today</p>
+                <div class="float-right"><i class="fa fa-id-badge text-danger font-30"></i></div><span
+                    class="badge badge-success">Registered Customers</span>
+                <h4 class="my-3">{{ users }}</h4>
+                <p class="mb-0"><span class="text-success"><i class="fa fa-level-up mr-1"
+                            aria-hidden="true"></i>7.5%</span>New Sessions Today</p>
             </div>
             <!--end card-body-->
         </div>
@@ -16,9 +19,11 @@
     <div class="col-sm-6 col-lg-4">
         <div class="card box-margin">
             <div class="card-body">
-                <div class="float-right"><i class="fa fa-bar-chart-o font-30"></i></div><span class="badge badge-secondary">Units Bought</span>
+                <div class="float-right"><i class="fa fa-bar-chart-o font-30"></i></div><span
+                    class="badge badge-secondary">Units Bought</span>
                 <h4 class="my-3">12345KW</h4>
-                <p class="mb-0"><span class="text-danger"><i class="fa fa-level-down mr-1" aria-hidden="true"></i>1.4%</span> Weekly Avg.Sessions</p>
+                <p class="mb-0"><span class="text-danger"><i class="fa fa-level-down mr-1"
+                            aria-hidden="true"></i>1.4%</span> Weekly Avg.Sessions</p>
             </div>
             <!--end card-body-->
         </div>
@@ -28,15 +33,57 @@
     <div class="col-sm-6 col-lg-4">
         <div class="card box-margin">
             <div class="card-body">
-                <div class="float-right"><i class="fa fa-codiepie text-warning font-30"></i></div><span class="badge badge-warning">Income From Bought Units</span>
+                <div class="float-right"><i class="fa fa-codiepie text-warning font-30"></i></div><span
+                    class="badge badge-warning">Income From Bought Units</span>
                 <h4 class="my-3">$2500</h4>
-                <p class="mb-0"><span class="text-danger"><i class="fa fa-level-down mr-1" aria-hidden="true"></i>45%</span> Bounce Rate Weekly</p>
+                <p class="mb-0"><span class="text-danger"><i class="fa fa-level-down mr-1"
+                            aria-hidden="true"></i>45%</span> Bounce Rate Weekly</p>
             </div>
             <!--end card-body-->
         </div>
-        <!--end card-->
     </div>
-    <!--end col-->
 </div>
+<div class="row container">
+    <div class="card box-margin">
+        <div class="col-md-12">
+        <div class="card-body">
+            <h4 class="card-title">Units Consumned </h4>
+            
+            <canvas id="myChart" width="400" height="400"></canvas>
+        </div>
+        </div>
+    </div>
+</div>
+
 {% endblock content %}
-    
+
+<script>
+    {% block jquery %}
+    var endpoint = '/api/customer'
+    var defaultData = [forEach]
+    var labels = [];
+    $.ajax({
+        method:"GET",
+        url:endpoint,
+        success:function(data){
+            labels = data.labels
+            defaultData = data.defaultData
+            var ctx = document.getElementById('myChart');
+            var myChart = new Chart(ctx, {
+                type:'bar',
+                data:{
+                    labels:labels,
+                    datasets:[{
+                        label:'Units Consumption',
+                        data:defaultData,
+                    }]
+                }
+            })
+        },
+        error:function(error_data){
+            console.log("error")
+            console.log(error_data)
+        }
+    });
+    {% endblock %}
+</script>

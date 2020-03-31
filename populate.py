@@ -35,14 +35,42 @@ from faker import Faker
 # # create_customer_household(15)       
 # meter_reding(200)
 
-def meter_reding(N):
+# def meter_reding(N):
+#     fake = Faker()
+#     for _ in range(N):
+#         id = random.randint(1, 10)
+#         date = fake.date_time_this_year(before_now=True, after_now=False, tzinfo=None)
+#         voltage = random.randint(110, 240)
+#         current = random.randint(100, 200)
+#         consumption = random.randint(0, 240)
+#         MetreReading.objects.create(owner_id=id,date=date,voltage=voltage,current=current,consumption=consumption)        
+
+# meter_reding(1000)
+
+# def transformerrea(N):
+#     fake = Faker()
+#     for _ in range(N):
+#         transname = fake.name()
+#         transloclat = fake.latitude()
+#         transloclong = fake.longitude()
+#         kvarating = fake.pyfloat(left_digits=2, right_digits=3, positive=True)
+#         phyaddress = fake.street_address()
+#         Transformer.objects.create(transname=transname,transloclat=transloclat,transloclong=transloclong,kvarating=kvarating,phyaddress=phyaddress)
+
+# transformer(60)
+
+def transformerrea(N):
     fake = Faker()
     for _ in range(N):
-        id = random.randint(1, 10)
-        date = fake.date_time_this_year(before_now=True, after_now=False, tzinfo=None)
-        voltage = random.randint(110, 240)
-        current = random.randint(100, 200)
-        consumption = random.randint(0, 240)
-        MetreReading.objects.create(owner_id=id,date=date,voltage=voltage,current=current,consumption=consumption)        
+        id = random.randint(51,60)
+        time = fake.date_time_this_year(before_now=True, after_now=False, tzinfo=None)
+        phasevred = random.randint(100, 200)
+        phasevblue = random.randint(100, 200)
+        phasevyellow = random.randint(100, 200)
+        phasecred = random.randint(100, 200)
+        phasecblue = random.randint(100, 200)
+        phasecyellow = random.randint(100, 200)
+        TransformerReading.objects.create(transformer_id=id, time=time, phasevred=phasevred, phasevblue=phasevblue,
+        phasevyellow=phasevyellow,phasecred=phasecred,phasecblue=phasecblue,phasecyellow=phasecyellow)
 
-meter_reding(1000)
+transformerrea(5000)

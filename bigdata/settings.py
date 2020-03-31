@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'customer',
     'transformer',
     'pages',
-    'crispy_forms'
+    'crispy_forms',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [

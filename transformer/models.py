@@ -33,5 +33,3 @@ class TransformerReading(models.Model):
         verbose_name = "Transformer Reading"
         verbose_name_plural = "Transformer Readings"
 
-    def __str__(self):
-        return self.transformer
