@@ -47,9 +47,8 @@
     <div class="card box-margin">
         <div class="col-md-12">
         <div class="card-body">
-            <h4 class="card-title">Units Consumned </h4>
-            
-            <canvas id="myChart" width="800" height="400"></canvas>
+            <h4 class="card-title">Total Units Consumned In a Day</h4>         
+            <canvas id="myChart" width="1000" height="400"></canvas>
         </div>
         </div>
     </div>
@@ -67,24 +66,38 @@
         method:"GET",
         url:endpoint,
         success:function(res){
-            console.log(res)
-            let labels=[];
-            let defaultData=[];
+            // console.log(res)
+            // let labels=[];
+            // let defaultData=[];
 
             //fill above arrays with API data
-            for(let i in res){
+            let getLabels = ()=>{
+                let labels = []
+                for(let i in res){
                 labels.push(res[i].date);
-                defaultData.push(res[i].units__sum);
+                }
+                console.log(labels)
+                return labels
             }
-            //plot chart
+
+            let getData = ()=>{
+                let data =[]
+                for(let i in res){
+                data.push(res[i].units__sum);
+                }
+                console.log(data)
+                return data   
+            }
+            //plot 
+            // console.log(labels,defaultData)
             let ctx = document.getElementById('myChart');
             let myChart = new Chart(ctx, {
                 type:'bar',
                 data:{
-                    labels:['date'],
+                    labels:getLabels(),
                     datasets:[{
-                        label:labels,
-                        data:defaultData
+                        label:"Units Consumed",
+                        data:getData()
                     }]
                 }
             })
