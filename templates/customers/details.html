@@ -1,1 +1,135 @@
 {% extends 'base.html' %}
+
+{% block content %}
+<div class="card bg-dark mb-30">
+    <div class="card-body py-5">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="d-flex align-items-center">
+
+                    <div class="icon font-30 text-white">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                    </div>
+                    <div class="icon-text pl-4">
+                        <h5 class="mb-0 text-white">{{client.customerFirstName}} {{client.customerLastName}}</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="d-flex align-items-center">
+                    <div class="icon font-30 text-white">
+                        <i class="fa fa-phone" aria-hidden="true"></i>
+                    </div>
+                    <div class="icon-text pl-4">
+                        <h5 class="mb-0 text-white">+255-{{client.customerPhone}}</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="d-flex align-items-center">
+                    <div class="icon font-30 text-white">
+                        <i class="fa fa-weight" aria-hidden="true"></i>
+                    </div>
+                    <div class="icon-text pl-4">
+                        <h5 class="mb-0 text-white">{{client.customerMetreno}}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body pb-0">
+                <h6 class="card-title mb-0">{{client.customerFirstName}} {{client.customerLastName}} Transactions</h6>
+            </div>
+            <div class="card-body px-0">
+                <!-- Table -->
+                <div class="table-responsive">
+                    <table class="table table-nowrap">
+                        <thead>
+                            <tr>
+                                <th>date</th>
+                                <th>units</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for transaction in transaction %}
+                            <tr>
+                                <td class="order">
+                                    <span class="text-sm font-weight-bold mb-0">{{transaction.date}}</span>
+                                    <!-- <span class="d-block text-sm text-muted">ABC 00023</span> -->
+                                </td>
+                                <td>
+                                    <span class="taxes text-sm mb-0">{{ transaction.units }}</span>
+                                </td>
+                                <td>
+                                    <div>
+                                        <!-- Actions -->
+                                        <div class="actions">
+                                            <a href="#" class="action-item mr-2" data-toggle="tooltip" title=""
+                                                data-original-title="Edit">
+                                                <i class="fa fa-pencil"></i>
+                                            </a>
+                                            <a href="#" class="action-item mr-2" data-toggle="tooltip" title=""
+                                                data-original-title="Archive">
+                                                <i class="fa fa-archive"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body pb-0">
+                <h6 class="card-title mb-0">{{client.customerFirstName}} {{client.customerLastName}} Meter Reading</h6>
+            </div>
+            <div class="card-body px-0">
+                <!-- Table -->
+                <div class="table-responsive">
+                    <table class="table table-nowrap">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Voltage</th>
+                                <th>Current</th>
+                                <th>Consumption</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for meterreading in meterreading %}
+                            <tr>
+                                <td class="order">
+                                    <span class="text-sm font-weight-bold mb-0">{{meterreading.date}}</span>
+                                    <!-- <span class="d-block text-sm text-muted">{{meterreading.date}}</span> -->
+                                </td>
+                                <td>
+                                    <span class="taxes text-sm mb-0">{{meterreading.voltage}} Volts</span>
+                                </td>
+                                <td>
+                                    <span class="taxes text-sm mb-0">{{meterreading.current}} Ampere</span>
+                                </td>
+                                <td>
+
+                                    <span class="taxes text-sm mb-0">{{meterreading.consumption}} watts</span>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

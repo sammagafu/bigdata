@@ -49,33 +49,42 @@
         <div class="card-body">
             <h4 class="card-title">Units Consumned </h4>
             
-            <canvas id="myChart" width="400" height="400"></canvas>
+            <canvas id="myChart" width="800" height="400"></canvas>
         </div>
         </div>
     </div>
 </div>
 
-{% endblock content %}
-
+{% endblock %}
+{% block jquery %}
 <script>
-    {% block jquery %}
+    $(document).ready(function(){
+
     var endpoint = '/api/customer'
-    var defaultData = [forEach]
-    var labels = [];
+    // var defaultData;
+    // var labels;
     $.ajax({
         method:"GET",
         url:endpoint,
-        success:function(data){
-            labels = data.labels
-            defaultData = data.defaultData
-            var ctx = document.getElementById('myChart');
-            var myChart = new Chart(ctx, {
+        success:function(res){
+            console.log(res)
+            let labels=[];
+            let defaultData=[];
+
+            //fill above arrays with API data
+            for(let i in res){
+                labels.push(res[i].date);
+                defaultData.push(res[i].units__sum);
+            }
+            //plot chart
+            let ctx = document.getElementById('myChart');
+            let myChart = new Chart(ctx, {
                 type:'bar',
                 data:{
-                    labels:labels,
+                    labels:['date'],
                     datasets:[{
-                        label:'Units Consumption',
-                        data:defaultData,
+                        label:labels,
+                        data:defaultData
                     }]
                 }
             })
@@ -85,5 +94,7 @@
             console.log(error_data)
         }
     });
-    {% endblock %}
+
+})
 </script>
+{% endblock %}
